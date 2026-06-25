@@ -1,3 +1,7 @@
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '1.1.1.1']);
+dns.setDefaultResultOrder('ipv4first');
+
 // cargar variables de entorno PRIMERO (antes de cualquier import)
 require('dotenv').config()
 
