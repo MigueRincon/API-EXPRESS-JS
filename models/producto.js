@@ -47,3 +47,11 @@ const productoSchema = new mongoose.Schema(
         timestamps: true  // agrega automaticamente createdAt y updatedAt
     }
 );
+
+// 2. Crear el modelo a partir del schema
+// Primer argumento: nombre de la coleccion (MongoDB la pone en minusculas + plural -> "productos")
+// segundo argumento: el schema
+const producto = mongoose.model('producto', productoSchema)
+
+// 3. Exportar el modelo para usarlo en las rutas
+module.exports = producto;
