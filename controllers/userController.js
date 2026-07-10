@@ -1,5 +1,5 @@
 const User = require('../models/User');
-
+/*
 // Get octener todos los usuarios
 exports.obtenerUsuarios = async (req, res) => {
     try {
@@ -46,7 +46,7 @@ exports.obtenerUsuariosPorId = async (req, res) => {
             });
         }
     };
-
+*/
     // POST - Crear un nuevo usuario
     exports.crearUsuario = async (req, res) => {
         try {
@@ -78,6 +78,7 @@ exports.obtenerUsuariosPorId = async (req, res) => {
         }
     };
 
+    /*
     // PUT - Actualizar un usuario
     exports.actualizarUsuario = async (req, res) => {
         try {
@@ -138,3 +139,4 @@ exports.obtenerUsuariosPorId = async (req, res) => {
             });
         }
     };
+    */
