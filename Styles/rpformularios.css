@@ -1,0 +1,115 @@
+/*para centrar la imagen de fondo en el body*/
+.background{ 
+    background-repeat: no-repeat;/* no repetir la imagen */
+    background-size: cover;/* cubrir toda la pantalla */
+    background-position: center;/* centrar la imagen */
+    position: fixed;/* posicionamiento de la imagen */
+    top: 0;/* posicionamiento de la imagen */
+    left: 0;/* posicionamiento de la imagen */
+    width: 100%;/* ancho de la imagen */
+    height: 100%;/* alto de la imagen */
+    z-index: -1;/* z-index de la imagen */
+}
+.fondo{
+    background-color: #000000;/* color de fondo */
+    opacity: 0.8;/* opacidad del fondo */
+    filter: blur(5px);/* desenfoque del fondo */
+    -webkit-filter: blur(5px); /* desenfoque del fondo */
+    z-index: -1;/* z-index del fondo */
+    position: fixed;/* posicionamiento del fondo */
+    top: 0;/* posicionamiento del fondo */
+    left: 0;/* posicionamiento del fondo */
+    width: 100%;/* ancho del fondo */
+    height: 100%;/* alto del fondo */
+    display: flex;/* flexbox para centrar el fondo */
+    justify-content: center;/* centrar el fondo */
+    align-items: center;/* centrar el fondo */
+    overflow: hidden;/* ocultar el fondo */
+}
+
+header{
+    width: 100%;/* ancho del header */
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;/* centrar el header */
+    position: static;/* posicionamiento del header */
+    background-color: #e45121;/* color de fondo */
+    border-bottom: 1px solid #c23737;/* borde inferior */
+    border-radius: 10px;/* esquinas redondeadas */
+}
+h1{
+    font-family: "Pirata One", system-ui;/* fuente del texto */
+    font-size: 40px;/* tamaño de la fuente */
+    font-weight: 300;/* grosor de la fuente */
+    font-style:oblique;/* estilo de la fuente */
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    padding: 20px;
+    background-color: #ffffff;/* color de fondo */
+}
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    padding: 15px;
+    border: 2px solid #e45121;
+    border-radius: 60px;
+    background-color: #e4e4e4;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group{
+    margin-bottom: 15px;
+    border: #5980a7 1px solid;
+    border-radius: 20px;
+    padding: 50px;
+    width: 300px;
+    background-color: #727272;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.txt{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.datos{
+    border: rgb(238, 0, 0);
+    border-radius: 15px;
+    background-color: #d4d4d4; 
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+.btn{
+    border: 2px;
+    border-radius: 50px;
+    background-color: #d7401f;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+}
