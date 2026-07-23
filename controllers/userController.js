@@ -21,11 +21,11 @@ exports.obtenerUsuarios = async (req, res) => {
 };
 
 //GET - Obtener un usuario por ID
-exports.obtenerUsuariosPorId = async (req, res) => {
+exports.obtenerUsuarioPorId = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const usuarios = await User.findById(id);
+        const usuario = await User.findById(id);
 
         if (!usuario) {
             return res.status(404).json({
@@ -38,14 +38,14 @@ exports.obtenerUsuariosPorId = async (req, res) => {
             exitoso: true,
             datos: usuario
         });
-        } catch (error) {
-            res.status(500).json({
-                exitoso: false,
-                mensaje: 'Error al obtener usuario',
-                error: error.message
-            });
-        }
-    };
+    } catch (error) {
+        res.status(500).json({
+            exitoso: false,
+            mensaje: 'Error al obtener usuario',
+            error: error.message
+        });
+    }
+};
 
     // POST - Crear un nuevo usuario
     exports.crearUsuario = async (req, res) => {
@@ -135,7 +135,7 @@ exports.obtenerUsuariosPorId = async (req, res) => {
             res.status(500).json({
                 exitoso: false,
                 mensaje: 'Error al eliminar usuario',
-                error: erro.message
+                error: error.message
             });
         }
     };

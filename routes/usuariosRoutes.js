@@ -2,17 +2,17 @@ const express = require('express');
 const router = express.Router();
 const {
     obtenerUsuarios,
-    obtenerUsuariosPorId,
+    obtenerUsuarioPorId,
     crearUsuario,
-    atualizarUsuario,
+    actualizarUsuario,
     eliminarUsuario
 } = require('../controllers/userController');
 
 //GET - Obtener todos los usuarios 
-router.get('/', obtenerUsuarios);
+router.get('/',obtenerUsuarios);
 
 // GET - Obtener un usuario por ID
-router.get('/:id', obtenerUsuarioPorId);
+router.get('/:id',obtenerUsuarioPorId);
 
 // POST - Crear un nuevo usuario
 router.post('/',crearUsuario);
