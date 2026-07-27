@@ -62,12 +62,12 @@ const userSchema = new mongoose.Schema({
 userSchema.pre('save', async function (next) {
   // Solo hashear si la contraseña fue modificada
   if (!this.isModified('password')) {
-    return next(); 
+    return next();
   }
 
   // Generar el salt y hashear
   const salt = await bcrypt.genSalt(10);
-  this.password = await bycrypt.hash(this.password, salt);
+  this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
@@ -76,4 +76,6 @@ userSchema.methods.compararPassword = async function (passwordIngresada) {
   return await bcrypt.compare(passwordIngresada, this.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.models.User || mongoose.model('User', userSchema);
+
+module.exports = User;
