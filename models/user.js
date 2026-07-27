@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   nombre: {
     type: String,
     required: [true, 'El nombre es requerido'],
     trim: true,
-    minlength: [2, 'El nombre debe tener al menos 2 caracteres'],
-    maxlength: [50, 'El nombre no puede exceder 50 caracteres']
+    /*minlength: [2, 'El nombre debe tener al menos 2 caracteres'],
+    maxlength: [50, 'El nombre no puede exceder 50 caracteres']*/
   },
   
   email: {
@@ -16,8 +17,15 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Email inválido']
   },
-  
-  edad: {
+
+  password: {
+    type: String,
+    required: [true, 'La contraseña es requerida'],
+    minlength: [6, 'La contraseña debe tener al menos 6 caracteres'],
+    select: false // no se devuelve en las consultas por defecto
+  },
+
+/*  edad: {
     type: Number,
     min: [18, 'Debes ser mayor de 18'],
     max: [120, 'Edad no válida']
@@ -41,13 +49,31 @@ const userSchema = new mongoose.Schema({
   fechaCreacion: {
     type: Date,
     default: Date.now
-  },
+  },*/
   
   rol: {
     type: String,
-    enum: ['usuario', 'admin', 'moderador'],
+    enum: ['usuario', 'admin'],
     default: 'usuario'
   }
 }, { timestamps: true });
+
+// HOOK: se ejecuta ANTES de guardar (pre 'save')
+userSchema.pre('save', async function (next) {
+  // Solo hashear si la contraseña fue modificada
+  if (!this.isModified('password')) {
+    return next(); 
+  }
+
+  // Generar el salt y hashear
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bycrypt.hash(this.password, salt);
+  next();
+});
+
+// METODO: comaparar contraseña en el login
+userSchema.methods.compararPassword = async function (passwordIngresada) {
+  return await bcrypt.compare(passwordIngresada, this.password);
+};
 
 module.exports = mongoose.model('User', userSchema);

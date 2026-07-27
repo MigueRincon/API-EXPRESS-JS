@@ -26,6 +26,7 @@ mongoose
 const productosRoutes = require('./routes/productosRoutes')
 const usuariosRoutes = require('./routes/usuariosRoutes')
 const ejerciciosRoutes = require('./routes/exerciseRoutes')
+const authRoutes = require('./routes/authRoutes')
 
 // ruta de prueba
 app.get('/', (req, res) => {
@@ -36,6 +37,8 @@ app.get('/', (req, res) => {
 app.use('/productos', productosRoutes)
 app.use('/usuarios', usuariosRoutes)
 app.use('/ejercicios', ejerciciosRoutes)
+app.use('/api/auth', authRoutes);
+
 // levantar el servidor
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
