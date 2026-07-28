@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 // Función auxiliar: generar un token JWT
@@ -57,7 +57,7 @@ exports.registrar = async (req, res) => {
       error: error.message
     });
   }
-}; 
+};
 
 
 
