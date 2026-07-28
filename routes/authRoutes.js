@@ -4,5 +4,6 @@ const { registrar } = require('../controllers/authController');
 
 // POST - Registrar nuevo usuario
 router.post('/register', registrar);
+router.post('/login', login);   // ← nueva ruta
 
 module.exports = router;
