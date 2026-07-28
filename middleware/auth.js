@@ -48,15 +48,17 @@ exports.proteger = async (req, res, next) => {
     }
 };
 
+
 // Middleware: autorizar solo ciertos roles
 exports.autorizar = (...rolesPermitidos) => {
-    return (req, res, next) => {
-        //req.usuario ya existente porque 'proteger' corrio antes
-        if (!rolesPermitidos.includes(req.usuario.rol)) {
-            return res.status(403).json({
-                exitoso: false,
-                mensaje: 'El rol '${req.usuario.rol }' no tiene permisos para esta acción'
-            });
+  return (req, res, next) => {
+    // req.usuario ya existe porque 'proteger' corrió antes
+    if (!rolesPermitidos.includes(req.usuario.rol)) {
+      return res.status(403).json({
+        exitoso: false,
+        mensaje: `El rol '${req.usuario.rol}' no tiene permiso para esta acción`
+      });
     }
     next();
+  };
 };
