@@ -58,3 +58,66 @@ exports.registrar = async (req, res) => {
     });
   }
 }; 
+
+
+
+// POST /api/auth/login
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // 1. Validar datos
+    if (!email || !password) {
+      return res.status(400).json({
+        exitoso: false,
+        mensaje: 'Email y contraseña son requeridos'
+      });
+    }
+
+    // 2. Buscar el usuario INCLUYENDO el password
+    //    (recuerda que pusimos select: false en el modelo)
+    const usuario = await User.findOne({ email }).select('+password');
+
+    // 3. Si no existe, error genérico (no revelar qué falló)
+    if (!usuario) {
+      return res.status(401).json({
+        exitoso: false,
+        mensaje: 'Credenciales inválidas'
+      });
+    }
+
+    // 4. Comparar la contraseña con el método del modelo
+    const passwordCorrecta = await usuario.compararPassword(password);
+    if (!passwordCorrecta) {
+      return res.status(401).json({
+        exitoso: false,
+        mensaje: 'Credenciales inválidas'
+      });
+    }
+
+    // 5. Todo bien: generar token
+    const token = generarToken(usuario);
+
+    // 6. Responder con el token
+    res.status(200).json({
+      exitoso: true,
+      mensaje: 'Login exitoso',
+      token,
+      usuario: {
+        id: usuario._id,
+        nombre: usuario.nombre,
+        email: usuario.email,
+        rol: usuario.rol
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      exitoso: false,
+      mensaje: 'Error al iniciar sesión',
+      error: error.message
+    });
+  }
+};
+
+
+
