@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 // Función auxiliar: generar un token JWT
@@ -120,4 +120,16 @@ exports.login = async (req, res) => {
 };
 
 
-
+// GET /api/auth/me (ruta protegida)
+exports.miPerfil = async (req, res) => {
+  // req. usuario lo puso el middleware 'proteger'
+  res.status(200).json({
+    exitoso: true,
+    usuario: {
+      id: req.usuario._id,
+      nombre: req.usuario.nombre,
+      email: req.usuario.email,
+      rol: req.usuario.rol
+    }
+  });
+};

@@ -59,16 +59,15 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // HOOK: se ejecuta ANTES de guardar (pre 'save')
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function () {
   // Solo hashear si la contraseña fue modificada
   if (!this.isModified('password')) {
-    return next();
+    return;
   }
 
   // Generar el salt y hashear
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  next();
 });
 
 // METODO: comaparar contraseña en el login
