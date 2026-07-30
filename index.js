@@ -39,6 +39,7 @@ app.use('/usuarios', usuariosRoutes)
 app.use('/ejercicios', ejerciciosRoutes)
 app.use('/api/auth', authRoutes);
 
+
 // levantar el servidor
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
