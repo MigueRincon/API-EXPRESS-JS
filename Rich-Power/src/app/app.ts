@@ -4,7 +4,6 @@ import { Saludo } from './components/saludo/saludo';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet, Saludo],
   templateUrl: './app.html',
   styleUrl: './app.css'

@@ -1,6 +1,10 @@
 # RichPower
 
+<<<<<<< HEAD
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.19.
+=======
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.2.
+>>>>>>> 1d9e4f2d785052bc61c3da907b3343e98cdf8ca8
 
 ## Development server
 
